@@ -13,10 +13,16 @@
     <p id='status'>
 
   </p>
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
 
   <script type='text/javascript'>
 
-    Twilio.Device.setup('{% token %}');
+    Twilio.Device.setup('{{ token }}');
+
+    Twilio.Device.ready(function(status) {
+      console.log(status);
+    });
 
       Twilio.Device.disconnect(function(connection) {
         $('#status').html('Call disconnected');
@@ -27,11 +33,12 @@
       });
 
       $('#call').on('click', function() {
-        Twilio.Device.connect({
-          CallerId:'{% twilioNumber %}'
-        });
+        Twilio.Device.connect();
       });
 
+
   </script>
+
+
 
 {% endblock %}

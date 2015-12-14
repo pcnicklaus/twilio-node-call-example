@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
   res.render('index', {
       token: capability.generate(),
-      twilioNumber: config.TWILIO_NUMBER
+      numberToCall: "+12243884883"
   });
 
 });
@@ -25,13 +25,13 @@ router.get('/', function(req, res, next) {
 
 router.get('/data', function(req, res, next){
 
-    var phoneNumber = 'XXXXXXXXXX';
+    var phoneNumber = '12243884883';
 
     var callData = {
       'Dial': {
         '@': {
           'action' : '/forward?Dial=true',
-          'callerId': 'XXXXXXXXXX'
+          'callerId': '2243884883'
         },
         'Number': {
           '#' : phoneNumber
