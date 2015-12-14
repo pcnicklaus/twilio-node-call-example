@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+  <div class='container'>
+
+    <button id='hangup'>Hang Up</button>
+    <br>
+    <button id='call'>Call</button>
+    <p id='status'>
+
+  </p>
+
+  <script type='text/javascript'>
+
+    Twilio.Device.setup('{% token %}');
+
+      Twilio.Device.disconnect(function(connection) {
+        $('#status').html('Call disconnected');
+      });
+
+      $('#hangup').click(function() {
+        Twilio.Device.disconnectAll();
+      });
+
+      $('#call').on('click', function() {
+        Twilio.Device.connect({
+          CallerId:'{% twilioNumber %}'
+        });
+      });
+
+  </script>
+
+{% endblock %}
